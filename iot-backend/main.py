@@ -84,10 +84,10 @@ while continue_reading:
                     # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
                     val = hx.get_weight(5)
                     print val
-                    if (val>=prevwt-4 && val<=prevwt+4):
+                    if (val>=prevwt-4 and val<=prevwt+4):
                         timeout = timeout + 1
                     elif (val<prevwt-4):
-                        if (value>=removedwt-2 && value<=removedwt+2):
+                        if (value>=removedwt-2 and value<=removedwt+2):
                             #Remove product from cart
                             scanWt = 0
                             prevwt = value
@@ -95,7 +95,7 @@ while continue_reading:
                             #Notify error
                             scanWt = 0
                     else
-                        if (value>=reqwt-2 && value<=reqwt+2):
+                        if (value>=reqwt-2 and value<=reqwt+2):
                             #Add product to cart
                             scanWt = 0
                             prevwt = value

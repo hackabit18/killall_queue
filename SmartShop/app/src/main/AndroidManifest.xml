@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.killall_queuehackabit.smartshop">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,10 +19,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/MyTheme" />
         <activity android:name=".forgot_password" />
-        <activity android:name=".sign_up" />
+        <activity
+            android:name=".sign_up"
+            android:theme="@style/MyTheme" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".ProfileActivity"
+            android:theme="@style/MyTheme"/>
+        <activity android:name=".scanner" />
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
+
+        <activity android:name=".profile_edit"></activity>
     </application>
 
 </manifest>

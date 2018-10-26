@@ -35,7 +35,7 @@ prevwt=0
 
 # This loop keeps checking for chips. If one is near it will get the UID and authenticate
 while continue_reading:
-
+    
     # Scan for cards
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
@@ -75,7 +75,7 @@ while continue_reading:
             hx.tare()
 
             scanWt = 1
-            while (scanWt<5):
+            while scanWt:
                 try:
                     # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
                     # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
@@ -112,7 +112,6 @@ while continue_reading:
                     hx.power_down()
                     hx.power_up()
                     time.sleep(0.5)
-                    scanWt = scanWt+1
                 except (KeyboardInterrupt, SystemExit):
                     GPIO.cleanup()
         else:

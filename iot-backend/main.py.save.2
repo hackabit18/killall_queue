@@ -25,9 +25,6 @@ def end_read(signal,frame):
 signal.signal(signal.SIGINT, end_read)
 
 # Create an object of the class MFRC522
-
-MIFAREReader = MFRC522.MFRC522()
-
 # Welcome message
 print "Welcome to the MFRC522 data read example"
 print "Press Ctrl-C to stop."
@@ -35,7 +32,7 @@ prevwt=0
 
 # This loop keeps checking for chips. If one is near it will get the UID and authenticate
 while continue_reading:
-
+    MIFAREReader = MFRC522.MFRC522()
     # Scan for cards
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
@@ -112,8 +109,7 @@ while continue_reading:
                     hx.power_down()
                     hx.power_up()
                     time.sleep(0.5)
-                    scanWt = scanWt+1
-                except (KeyboardInterrupt, SystemExit):
+                    scanWt = S                except (KeyboardInterrupt, SystemExit):
                     GPIO.cleanup()
         else:
             print "Authentication error"

@@ -25,13 +25,8 @@ def end_read(signal,frame):
 signal.signal(signal.SIGINT, end_read)
 
 # Create an object of the class MFRC522
-hx = HX711(5, 6)
-MIFAREReader = MFRC522.MFRC522()
-hx.set_reading_format("LSB", "MSB")
-hx.set_reference_unit(92)
 
-hx.reset()
-hx.tare()
+MIFAREReader = MFRC522.MFRC522()
 
 # Welcome message
 print "Welcome to the MFRC522 data read example"
@@ -71,6 +66,14 @@ while continue_reading:
             MIFAREReader.MFRC522_Read(8)
             MIFAREReader.MFRC522_StopCrypto1()
             #Check required weight here
+            GPIO.cleanup()
+            hx = HX711(5, 6)
+            hx.set_reading_format("LSB", "MSB")
+            hx.set_reference_unit(92)
+
+            hx.reset()
+            hx.tare()
+
             scanWt = 1
             while scanWt:
                 try:
@@ -91,21 +94,25 @@ while continue_reading:
                             #Remove product from cart
                             scanWt = 0
                             prevwt = value
+                            GPIO.cleanup()
                         else:
                             #Notify error
                             scanWt = 0
+                            GPIO.cleanup()
                     else:
                         if (value>=reqwt-2 and value<=reqwt+2):
                             #Add product to cart
                             scanWt = 0
                             prevwt = value
+                            GPIO.cleanup()
                         else:
                             #Notify Error
                             scanWt = 0
+                            GPIO.cleanup()
                     hx.power_down()
                     hx.power_up()
                     time.sleep(0.5)
                 except (KeyboardInterrupt, SystemExit):
-                    cleanAndExit()
+                    GPIO.cleanup()
         else:
             print "Authentication error"

@@ -108,4 +108,4 @@ while continue_reading:
                 except (KeyboardInterrupt, SystemExit):
                     cleanAndExit()
         else:
-            print "Authentication error"
+            print "Authentication

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.SparseArray;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class scanner extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textCamera2 = (TextView) findViewById(R.id.textCamera2);;
 
         camera_preview = (SurfaceView) findViewById(R.id.camera_preview2);
@@ -107,5 +108,14 @@ public class scanner extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

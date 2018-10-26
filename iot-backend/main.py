@@ -1,0 +1,111 @@
+import RPi.GPIO as GPIO
+import time
+import datetime
+import sys
+from lib.hx711py.hx711 import HX711
+import MFRC522
+import signal
+
+continue_reading = True
+
+def cleanAndExit():
+    print "Cleaning..."
+    GPIO.cleanup()
+    print "Bye!"
+    sys.exit()
+
+# Capture SIGINT for cleanup when the script is aborted
+def end_read(signal,frame):
+    global continue_reading
+    print "Ctrl+C captured, ending read."
+    continue_reading = False
+    GPIO.cleanup()
+
+# Hook the SIGINT
+signal.signal(signal.SIGINT, end_read)
+
+# Create an object of the class MFRC522
+hx = HX711(5, 6)
+MIFAREReader = MFRC522.MFRC522()
+hx.set_reading_format("LSB", "MSB")
+hx.set_reference_unit(92)
+
+hx.reset()
+hx.tare()
+
+# Welcome message
+print "Welcome to the MFRC522 data read example"
+print "Press Ctrl-C to stop."
+prevwt=0
+
+# This loop keeps checking for chips. If one is near it will get the UID and authenticate
+while continue_reading:
+
+    # Scan for cards
+    (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
+
+    # If a card is found
+    if status == MIFAREReader.MI_OK:
+        print "Card detected"
+
+    # Get the UID of the card
+    (status,uid) = MIFAREReader.MFRC522_Anticoll()
+
+    # If we have the UID, continue
+    if status == MIFAREReader.MI_OK:
+
+        # Print UID
+        print "Card read UID: %s,%s,%s,%s" % (uid[0], uid[1], uid[2], uid[3])
+
+        # This is the default key for authentication
+        key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+
+        # Select the scanned tag
+        MIFAREReader.MFRC522_SelectTag(uid)
+
+        # Authenticate
+        status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
+
+        # Check if authenticated
+        if status == MIFAREReader.MI_OK:
+            MIFAREReader.MFRC522_Read(8)
+            MIFAREReader.MFRC522_StopCrypto1()
+            #Check required weight here
+            scanWt = 1
+            while scanWt:
+                try:
+                    # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
+                    # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
+                    # Comment the two lines "val = hx.get_weight(5)" and "print val" and uncomment the three lines to see what it prints.
+                    #np_arr8_string = hx.get_np_arr8_string()
+                    #binary_string = hx.get_binary_string()
+                    #print binary_string + " " + np_arr8_string
+
+                    # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
+                    val = hx.get_weight(5)
+                    print val
+                    if (val>=prevwt-4 && val<=prevwt+4):
+                        timeout = timeout + 1
+                    elif (val<prevwt-4):
+                        if (value>=removedwt-2 && value<=removedwt+2):
+                            #Remove product from cart
+                            scanWt = 0
+                            prevwt = value
+                        else:
+                            #Notify error
+                            scanWt = 0
+                    else
+                        if (value>=reqwt-2 && value<=reqwt+2):
+                            #Add product to cart
+                            scanWt = 0
+                            prevwt = value
+                        else:
+                            #Notify Error
+                            scanWt = 0
+                    hx.power_down()
+                    hx.power_up()
+                    time.sleep(0.5)
+                except (KeyboardInterrupt, SystemExit):
+                    cleanAndExit()
+        else:
+            print "Authentication error"

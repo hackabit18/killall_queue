@@ -5,8 +5,18 @@ import sys
 from lib.hx711py.hx711 import HX711
 import lib.RC522.MFRC522 as MFRC522
 import signal
+from firebase.firebase import FirebaseApplication, FirebaseAuthentication
+import json
 
 continue_reading = True
+
+SECRET = '7GmEpvZULivAmWAZdJ8CN17f0kA2k0qsXSys4AKZ'
+DSN = 'https://loginauth-fb69f.firebaseio.com/'
+EMAIL = 'io.satyamtg@gmail.com'
+authentication = FirebaseAuthentication(SECRET,EMAIL, True, True)
+firebase = FirebaseApplication(DSN, authentication)
+cartno = 7412350101
+
 
 def cleanAndExit():
     print "Cleaning..."
@@ -65,7 +75,9 @@ while continue_reading:
         if status == MIFAREReader.MI_OK:
             MIFAREReader.MFRC522_Read(8)
             MIFAREReader.MFRC522_StopCrypto1()
-            #Check required weight here
+            itemcode = 00000001
+            reqwt = prevwt + json.loads(firebase.get('/inventory/itemcode/weight', None))
+            print reqwt
             GPIO.cleanup()
             hx = HX711(5, 6)
             hx.set_reading_format("LSB", "MSB")

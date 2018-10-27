@@ -69,10 +69,10 @@ while continue_reading:
             GPIO.cleanup()
             hx = HX711(5, 6)
             hx.set_reading_format("LSB", "MSB")
-            hx.set_reference_unit(92)
+            hx.set_reference_unit(920)
 
             hx.reset()
-            hx.tare()
+           # hx.tare()
 
             scanWt = 1
             while (scanWt<5):

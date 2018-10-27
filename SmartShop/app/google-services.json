@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "462002205226",
+    "firebase_url": "https://smartshop-4e831.firebaseio.com",
+    "project_id": "smartshop-4e831",
+    "storage_bucket": "smartshop-4e831.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462002205226:android:2aeefb837bf5f9c4",
+        "android_client_info": {
+          "package_name": "com.killall_queuehackabit.smartshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462002205226-kc2ln2ajpatjfk5gorpqfm3o020t3e7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbXYMfgOqcLwK5TALU2omTHfWzL0jT5Us"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

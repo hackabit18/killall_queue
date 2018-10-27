@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SmartShop</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="Rs">\u20B9</string>
+</resources>

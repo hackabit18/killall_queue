@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="18dp"
+    android:background="@drawable/login_background"
+    tools:context=".activity_sign_up">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:autofillHints="First Name"
+                android:id="@+id/fname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:hint="First Name"
+                android:textColor="#fff"
+                android:padding="6dp"
+                android:textColorHint="#fff" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#fff" />
+
+            <EditText
+                android:autofillHints="Last Name"
+                android:id="@+id/lname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:hint="Last Name"
+                android:padding="6dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#fff" />
+
+            <EditText
+                android:autofillHints="Number"
+                android:id="@+id/number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:hint="Contact Number"
+                android:inputType="number"
+                android:padding="6dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#fff" />
+
+            <EditText
+                android:autofillHints="Email"
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:hint="Email Address"
+                android:inputType="textEmailAddress"
+                android:padding="6dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#fff" />
+
+            <TextView
+                android:id="@+id/error_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:textColor="#FBFF03"
+                android:visibility="gone"/>
+
+            <EditText
+                android:autofillHints="PAssword"
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="6dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#fff" />
+
+            <TextView
+                android:id="@+id/error_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:textColor="#FBFF03"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/newAccount"
+                style="@style/AppTheme.RoundedCornerMaterialButton3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="70dp"
+                android:padding="5dp"
+                android:text="Create New Account"
+                android:textAllCaps="false"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:text="Already Signed In? Login."
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

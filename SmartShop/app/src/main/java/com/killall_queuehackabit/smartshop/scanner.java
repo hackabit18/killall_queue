@@ -29,6 +29,7 @@ public class scanner extends AppCompatActivity {
     private CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
     private TextView textCamera2;
+    private String cart_code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,12 @@ public class scanner extends AppCompatActivity {
                         public void run() {
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
-                            textCamera2.setText(qrcodes.valueAt(0).displayValue);
+                            cart_code = qrcodes.valueAt(0).displayValue;
+                            barcodeDetector.release();
+                            finish();
+                            Intent intent = new Intent(scanner.this,cart.class);
+                            intent.putExtra("cart_code",cart_code);
+                            startActivity(intent);
                         }
                     });
                 }

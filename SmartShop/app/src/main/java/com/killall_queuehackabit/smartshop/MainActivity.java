@@ -196,18 +196,18 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
         });*/
 
-        navtitle = (TextView)findViewById(R.id.navtitle);
+        /*navtitle = (TextView)findViewById(R.id.navtitle);
         navInfo = (TextView)findViewById(R.id.navInfo);
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/RobotoMono-Regular.ttf");
         navtitle.setTypeface(typeface);
-        navInfo.setTypeface(typeface);
+        navInfo.setTypeface(typeface);*/
 
     }
 
     @Override
     public void onItemSelected(int position) {
         if (position == POS_LOGOUT) {
-            finish();
+            firebaseAuth.signOut();
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }
         if (position == POS_ACCOUNT) {

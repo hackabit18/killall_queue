@@ -57,7 +57,6 @@ signal.signal(signal.SIGINT, end_read)
 MIFAREReader = MFRC522.MFRC522()
 
 # Welcome message
-print "Welcome to the MFRC522 data read example"
 print "Press Ctrl-C to stop."
 prevwt=0
 
@@ -91,9 +90,9 @@ while continue_reading:
 
         # Check if authenticated
         if status == MIFAREReader.MI_OK:
-            MIFAREReader.MFRC522_Read(8)
+            itemrawcode=MIFAREReader.MFRC522_Read(8)
             MIFAREReader.MFRC522_StopCrypto1()
-            itemcode = 00000001
+            itemcode = "".join(itemrawcode)
             item="/inventory/"+str(itemcode).zfill(8)+"/weight"
             reqwt = prevwt + firebase.get(item, None)
             removedwt = prevwt - firebase.get(item, None)

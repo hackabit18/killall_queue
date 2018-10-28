@@ -24,7 +24,7 @@ After checkout (which is allowed only when the user shows )the inventory is upda
 4. Android Studio
 5. Firebase REST API
 
-## Instructions to run the application
+## Instructions to run the application -
 1. Connect the RFID (RC522) with Raspberry Pi 3B+
 2. SSH to the Pi
 3. git clone https://github.com/hackabit18/killall_queue/
